@@ -1,0 +1,28 @@
+---
+- name: Create files in /opt directory
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Create /opt directory if it doesn't exist
+      file:
+        path: /opt
+        state: directory
+        mode: '0755'
+
+    - name: Create 10 empty files in /opt directory
+      file:
+        path: "/opt/file{{ item }}"
+        state: touch
+        mode: '0644'
+      loop:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
